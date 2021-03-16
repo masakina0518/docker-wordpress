@@ -1,0 +1,48 @@
+version: '3'
+services:
+  web:
+      build: ./docker/web
+      ports:
+          - "8080:80"
+      volumes:
+          - ./app:/var/www/html
+      depends_on:
+          - app
+  app:
+      build: ./docker/app
+      environment:
+        PHP_INI_DIR: /etc/php7
+      volumes:
+          - ./app:/var/www/html
+          - ./logs/nginx:/var/log/nginx/
+      depends_on:
+          - db
+          - mail
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+  mail:
+    image: kanemu/maildev-with-iconv
+    ports:
+      - "1080:80"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+    depends_on:
+        - db
+    ports:
+      - 8081:80
+
+

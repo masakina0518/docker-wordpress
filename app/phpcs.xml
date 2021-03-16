@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset name="WP_Custom">
+    <description>
+        Customize Coding standards for Wordpress
+    </description>
+
+    <exclude-pattern>core/*</exclude-pattern>
+
+    <rule ref="WordPress">
+        <!-- WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet -->
+        <exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet"/>
+        <!-- Scripts must be registered/enqueued via -->
+        <exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedScript"/>
+        <!-- Doc comment short description must start with a capital letter -->
+        <exclude name="Generic.Commenting.DocComment.ShortNotCapital"/>
+        <!-- Doc comment long description must start with a capital letter -->
+        <exclude name="Generic.Commenting.DocComment.LongNotCapital"/>
+        <!-- Parameter comment must end with a full stop -->
+        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop"/>
+        <!-- Empty IF statement detected -->
+        <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedIf"/>
+        <!-- Filenames should be all lowercase with hyphens as word separators. -->
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+        <!-- Short array syntax is not allowed. -->
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+    </rule>
+
+    <!-- エスケープ確認 css/js出力の場合は除外-->
+    <rule ref="WordPress.Security.EscapeOutput.OutputNotEscaped">
+        <exclude-pattern>*/inc/parts/custom-field-cssjs.php</exclude-pattern>
+        <exclude-pattern>*/inc/functions/pagination.php</exclude-pattern>
+    </rule>
+    <!-- Detected usage of a non-sanitized input variable:$_POST -->
+    <rule ref="WordPress.Security.ValidatedSanitizedInput.InputNotSanitized">
+        <exclude-pattern>*/functions.php</exclude-pattern>
+        <exclude-pattern>*/inc/functions/custom-fields/cssjs.php</exclude-pattern>
+    </rule>
+    <!-- $_POST data not unslashed before sanitization. Use wp_unslash() or similar -->
+    <rule ref="WordPress.Security.ValidatedSanitizedInput.MissingUnslash">
+        <exclude-pattern>*/functions.php</exclude-pattern>
+        <exclude-pattern>*/inc/functions/custom-fields/cssjs.php</exclude-pattern>
+    </rule>
+</ruleset>

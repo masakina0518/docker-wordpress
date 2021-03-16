@@ -1,0 +1,19 @@
+{
+  "name": "cloud-pay.jp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "rm -r ./public/contents/themes/cloudpay-default/assets/js/vendor/*",
+    "install": "cp -r ./node_modules/* ./public/contents/themes/cloudpay-default/assets/js/vendor",
+    "build:css": "node-sass --source-map true --include-path scss public/contents/themes/cloudpay-default/assets/sass/style.scss public/contents/themes/cloudpay-default/assets/css/style.css --output-style compressed"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
+  }
+}

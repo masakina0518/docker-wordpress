@@ -1,0 +1,51 @@
+{
+    "name": "cloudpay/cloudpay-cms",
+    "description": "cloudpay コンテンツ管理システム",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.2.0",
+        "johnpbloch/wordpress": "5.3.*",
+        "koodimonni-language/core-ja": "5.3.*",
+        "wpackagist-plugin/wp-mail-smtp":"1.8.*",
+        "vlucas/phpdotenv": "4.1.*",
+        "wpackagist-plugin/amazon-s3-and-cloudfront":"2.3.*",
+        "wp-cli/wp-cli-bundle": "2.4.*",
+        "wpackagist-plugin/taxonomy-terms-order": "1.5.*",
+        "squizlabs/php_codesniffer": "3.5.*",
+        "wp-coding-standards/wpcs": "2.2.*",
+        "wpackagist-plugin/post-expirator": "2.4.*"
+    },
+    "repositories":[
+      {
+        "type": "composer",
+        "url": "https://wpackagist.org"
+      },
+      {
+        "type": "composer",
+        "url": "https://wp-languages.github.io"
+      }
+    ],
+    "extra": {
+      "installer-paths": {
+          "public/core/wp-content/plugins/{$name}/": [
+            "type:wordpress-plugin",
+            "type:wordpress-muplugin"
+          ]
+      },
+      "dropin-paths": {
+        "public/core/wp-content/languages/": ["vendor:koodimonni-language"],
+        "public/core/wp-content/languages/plugins/": ["vendor:koodimonni-plugin-language"],
+        "public/core/wp-content/languages/themes/": ["vendor:koodimonni-theme-language"]
+      },
+      "wordpress-install-dir": "public/core"
+    },
+    "scripts": {
+      "post-install-cmd": [
+          "vendor/squizlabs/php_codesniffer/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
+      ],
+      "phpcs" : [
+        "vendor/squizlabs/php_codesniffer/bin/phpcs -s --standard=phpcs.xml --extensions=php public/contents/themes/"
+      ]
+    }
+  }
