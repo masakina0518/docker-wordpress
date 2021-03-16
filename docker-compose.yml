@@ -30,10 +30,10 @@ services:
     ports:
       - "3306:3306"
   mail:
-    image: kanemu/maildev-with-iconv
+    build: ./docker/mail
     ports:
       - "1080:80"
-  phpmyadmin:
+  dbclient:
     image: phpmyadmin/phpmyadmin
     environment:
       - PMA_ARBITRARY=1
@@ -44,5 +44,10 @@ services:
         - db
     ports:
       - 8081:80
-
+  # awslocal:
+  #   image: localstack/localstack
+  #   environment:
+  #     - DATA_DIR: /tmp/localstack/data
+  #   volumes:
+  #     - ./data/localstack:/tmp/localstack   
 

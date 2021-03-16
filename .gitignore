@@ -18,16 +18,16 @@ desktop.ini
 
 /app/public/core
 /app/public/core/*
-#/app/public/contents/*
-#!/app/public/contents/themes
-#/app/public/contents/themes/*
+/app/public/contents/*
+!/app/public/contents/themes
+/app/public/contents/themes/*
 !/app/public/contents/themes/cloudpay-default
 
 /app/vendor
 /app/node_modules
 
 !/data/mysql
-#/data/mysql/*
+/data/mysql/*
 
 !/logs/nginx
-#/logs/nginx/*
+/logs/nginx/*
