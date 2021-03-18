@@ -6,6 +6,7 @@ services:
           - "8080:80"
       volumes:
           - ./app:/var/www/html
+          - ./logs/nginx:/var/log/nginx/
       depends_on:
           - app
   app:
@@ -14,7 +15,6 @@ services:
         PHP_INI_DIR: /etc/php7
       volumes:
           - ./app:/var/www/html
-          - ./logs/nginx:/var/log/nginx/
       depends_on:
           - db
           - mail
