@@ -28,6 +28,8 @@ desktop.ini
 
 !/data/mysql
 /data/mysql/*
+!/data/localstack
+/data/localstack/*
 
 !/logs/nginx
 /logs/nginx/*

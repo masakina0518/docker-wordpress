@@ -43,11 +43,16 @@ services:
     depends_on:
         - db
     ports:
-      - 8081:80
-  # awslocal:
-  #   image: localstack/localstack
-  #   environment:
-  #     - DATA_DIR: /tmp/localstack/data
-  #   volumes:
-  #     - ./data/localstack:/tmp/localstack   
-
+      - 8082:80
+  awslocal:
+    image: localstack/localstack:0.12.8
+    environment:
+      - DATA_DIR=/tmp/localstack/data
+      - SERVICES=apigateway,kinesis,dynamodb,dynamodbstreams,elasticsearch,s3,lambda,sns,sqs,redshift,es,ses,route53,cloudformation,cloudwatch,ssm,secretsmanager,stepfunctions,logs,sts,iam,ec2
+      - DEFAULT_REGION=ap-northeast-1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - ./data/localstack:/tmp/localstack   
+    ports:
+      - "4566:4566"
+      - "4571:4571"
