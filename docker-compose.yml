@@ -1,23 +1,31 @@
 version: '3'
 services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
   web:
-      build: ./docker/web
-      ports:
-          - "8080:80"
-      volumes:
-          - ./app:/var/www/html
-          - ./logs/nginx:/var/log/nginx/
-      depends_on:
-          - app
+    build: ./docker/web
+    ports:
+        - "8080:80"
+    environment:
+      VIRTUAL_HOST: app.test.local
+    volumes:
+        - ./app:/var/www/html
+        - ./logs/nginx:/var/log/nginx/
+    depends_on:
+        - app
   app:
-      build: ./docker/app
-      environment:
-        PHP_INI_DIR: /etc/php7
-      volumes:
-          - ./app:/var/www/html
-      depends_on:
-          - db
-          - mail
+    build: ./docker/app
+    environment:
+      PHP_INI_DIR: /etc/php7
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+        - db
+        - mail
   db:
     image: mysql:5.7
     volumes:
@@ -31,15 +39,19 @@ services:
       - "3306:3306"
   mail:
     build: ./docker/mail
-    ports:
-      - "1080:80"
+    environment:
+      VIRTUAL_HOST: mail.test.local
+    # ports:
+    #   - "1080:80"
   dbclient:
     image: phpmyadmin/phpmyadmin
     environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=db
-      - PMA_USER=root
-      - PMA_PASSWORD=password
+      VIRTUAL_HOST: phpmyadmin.test.local
+      MYSQL_DATABASE: wordpress
+      PMA_ARBITRARY: 1
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: password
     depends_on:
         - db
     ports:
@@ -47,10 +59,10 @@ services:
   awslocal:
     image: localstack/localstack:0.12.8
     environment:
-      - DATA_DIR=/tmp/localstack/data
-      - SERVICES=apigateway,kinesis,dynamodb,dynamodbstreams,elasticsearch,s3,lambda,sns,sqs,redshift,es,ses,route53,cloudformation,cloudwatch,ssm,secretsmanager,stepfunctions,logs,sts,iam,ec2
-      - DEFAULT_REGION=ap-northeast-1
-      - DOCKER_HOST=unix:///var/run/docker.sock
+      DATA_DIR: /tmp/localstack/data
+      SERVICES: apigateway,kinesis,dynamodb,dynamodbstreams,elasticsearch,s3,lambda,sns,sqs,redshift,es,ses,route53,cloudformation,cloudwatch,ssm,secretsmanager,stepfunctions,logs,sts,iam,ec2
+      DEFAULT_REGION: ap-northeast-1
+      DOCKER_HOST: unix:///var/run/docker.sock
     volumes:
       - ./data/localstack:/tmp/localstack   
     ports:
