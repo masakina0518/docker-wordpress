@@ -30,6 +30,8 @@ desktop.ini
 /data/mysql/*
 !/data/localstack
 /data/localstack/*
+!/data/redis
+/data/redis/*
 
 !/logs/nginx
 /logs/nginx/*
