@@ -23,12 +23,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
-/** Cloudpayお問合せサイト */
-define( 'CLOUDPAY_INQUIRY_SITE', getenv('CLOUDPAY_INQUIRY_SITE') );
-
-/** Cloudpayお申込みサイト */
-define( 'CLOUDPAY_APPLICATION_SITE', getenv('CLOUDPAY_APPLICATION_SITE') );
-
 /** サイトアドレス (URL) */
 define( 'WP_HOME', getenv('WP_HTTP_HOST') );
 

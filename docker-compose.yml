@@ -28,14 +28,12 @@ services:
         - mail
         - redis
   db:
-    image: mysql:5.7
+    image: mysql:5.7.16
     volumes:
       - ./data/mysql:/var/lib/mysql
     environment:
       MYSQL_DATABASE: wordpress
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
     ports:
       - 3306:3306
   mail:
