@@ -11,7 +11,7 @@ services:
     ports:
         - 8080:80
     environment:
-      VIRTUAL_HOST: app.test.local
+      VIRTUAL_HOST: app.wordpress.local
     volumes:
         - ./app:/var/www/html
         - ./logs/nginx:/var/log/nginx/
@@ -41,13 +41,13 @@ services:
   mail:
     build: ./docker/mail
     environment:
-      VIRTUAL_HOST: mail.test.local
+      VIRTUAL_HOST: mail.wordpress.local
     # ports:
     #   - "1080:80"
   dbclient:
     image: phpmyadmin/phpmyadmin
     environment:
-      VIRTUAL_HOST: phpmyadmin.test.local
+      VIRTUAL_HOST: phpmyadmin.wordpress.local
       MYSQL_DATABASE: wordpress
       PMA_ARBITRARY: 1
       PMA_HOST: db
