@@ -49,5 +49,7 @@ COPY ./00-settings.ini "$PHP_INI_DIR/conf.d/00-settings.ini"
 
 # ---------------------------------------
 
+RUN apk add --update nodejs npm
+
 RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
