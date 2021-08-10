@@ -30,7 +30,7 @@ services:
   db:
     image: mysql:5.7.16
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql:delegated
     environment:
       MYSQL_DATABASE: wordpress
       MYSQL_ROOT_PASSWORD: password
@@ -60,7 +60,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - ./data/redis:/data
+      - ./data/redis:/data:delegated
   awslocal:
     image: localstack/localstack:0.12.8
     environment:
