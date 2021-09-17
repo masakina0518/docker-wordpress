@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 # install packages
 RUN apk add -U --no-cache \
@@ -16,12 +16,14 @@ RUN apk add -U --no-cache \
     autoconf \
     make \
     gcc \
-    g++
+    g++ \
+    freetype-dev \
+    oniguruma-dev
 
 # install PHP extensions
 RUN docker-php-source extract
 RUN cp /usr/src/php/ext/openssl/config0.m4 /usr/src/php/ext/openssl/config.m4
-RUN docker-php-ext-configure gd --with-png-dir=/usr/include --with-jpeg-dir=/usr/include
+RUN docker-php-ext-configure gd --with-freetype=/usr/include --with-jpeg=/usr/include
 RUN docker-php-ext-install pdo\
     pdo_mysql \
     mysqli \
@@ -52,4 +54,5 @@ COPY ./00-settings.ini "$PHP_INI_DIR/conf.d/00-settings.ini"
 RUN apk add --update nodejs npm
 
 RUN mkdir -p /var/www/html
+RUN chown -R www-data.www-data /var/www/html
 WORKDIR /var/www/html

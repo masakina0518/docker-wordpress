@@ -4,9 +4,9 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": ">=7.2.0",
-        "johnpbloch/wordpress": "5.3.*",
-        "koodimonni-language/core-ja": "5.3.*",
+        "php": ">=7.4.0",
+        "johnpbloch/wordpress": "5.5.*",
+        "koodimonni-language/core-ja": "5.5.*",
         "wpackagist-plugin/wp-mail-smtp":"1.8.*",
         "vlucas/phpdotenv": "4.1.*",
         "wpackagist-plugin/amazon-s3-and-cloudfront":"2.3.*",
@@ -45,7 +45,7 @@
           "vendor/squizlabs/php_codesniffer/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
       ],
       "phpcs" : [
-        "vendor/squizlabs/php_codesniffer/bin/phpcs -s --standard=phpcs.xml --extensions=php public/contents/themes/"
+        "vendor/squizlabs/php_codesniffer/bin/phpcs -s --standard=phpcs.xml --extensions=php public/core/wp-content/plugins/wp-reviews/"
       ]
     }
   }
