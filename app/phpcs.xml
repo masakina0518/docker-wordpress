@@ -5,7 +5,6 @@
         Customize Coding standards for Wordpress
     </description>
 
-    <exclude-pattern>core/*</exclude-pattern>
 
     <rule ref="WordPress">
         <!-- WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet -->
@@ -24,6 +23,13 @@
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
         <!-- Short array syntax is not allowed. -->
         <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+        <exclude name="Squiz.Commenting.FileComment.Missing"/>
+
+        <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact"/>
+        <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+
     </rule>
 
     <!-- エスケープ確認 css/js出力の場合は除外-->
