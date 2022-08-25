@@ -1,8 +1,8 @@
-# Cloudpay CMS
-Cloudpayコンテンツ管理システム
+# Wordpress CMS
+コンテンツ管理システム
 
 ## Description
-Cloudpay LPページまたはFAQコンテンツを取り扱うCMSのデザインテンプレートを管理
+Wordpress LPページまたはFAQコンテンツを取り扱うCMSのデザインテンプレートを管理
 
 ## CMSについて
 CSMはWordpressを利用
@@ -11,4 +11,4 @@ CSMはWordpressを利用
 * [Website](https://ja.wordpress.org/download/)
 
 ## インストール方法
-cloudpay-localのmanual.docxを参照
+
